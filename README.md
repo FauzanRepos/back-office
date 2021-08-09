@@ -17,6 +17,10 @@
 5. open this link in your browser
     http://localhost:4300/
 
+6. login using this credential
+    username: userID
+    password: password123
+
 # BackOffice
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.

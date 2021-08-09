@@ -28,7 +28,7 @@ export class DataService {
   }
 
   getEmployee(id: number): Observable<employeeModel> {
-    return of(this.mockEmployee.find(data => data.id.toString() === id.toString())!);
+    return of(this.mockEmployee.find(data => data.id.toString() === (id ? id.toString() : ''))!);
   }
 
   addEmployee(data: employeeModel): Observable<null> {
