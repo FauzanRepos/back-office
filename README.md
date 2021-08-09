@@ -1,2 +1,2 @@
 # back-office
-CRUD with clarity
+CRUD with clarity & angular
