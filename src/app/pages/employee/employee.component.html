@@ -1,0 +1,181 @@
+<h1 class="text-center m-0">
+  Model Master
+</h1>
+
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+  <!--<clr-dg-action-bar>-->
+  <!--<div class="btn-group">-->
+  <!--<button type="button" class="btn btn-sm btn-secondary" (click)="justRefresh()">-->
+  <!--<clr-icon shape="refresh"></clr-icon>-->
+  <!--Refresh Data-->
+  <!--</button>-->
+  <!--<button type="button" class="btn btn-sm btn-secondary" (click)="onNew()">-->
+  <!--<clr-icon shape="plus"></clr-icon>-->
+  <!--Add Car Model-->
+  <!--</button>-->
+  <!--</div>-->
+  <!--</clr-dg-action-bar>-->
+  <clr-dg-column>No</clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      Produk
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      Segmen
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'makerName'">Maker</clr-dg-column>
+  <clr-dg-column [clrDgField]="'modelName'">Model</clr-dg-column>
+  <clr-dg-column [clrDgField]="'modelType'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      Tipe
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      Deskripsi
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{hidden: true}">
+      Status
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-placeholder>Maaf, tidak ada data disini</clr-dg-placeholder>
+
+  <clr-dg-row *ngFor="let car of Cars; let i = index" [clrDgItem]="car">
+    <clr-dg-cell>{{ pagination.firstItem + i + 1 }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.productName }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.segmentName }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.makerName }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.modelName }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.modelType }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.description }}</clr-dg-cell>
+    <clr-dg-cell>{{ car.activeStatus }}</clr-dg-cell>
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="onEdit(i)">Edit</button>
+      <button class="action-item" (click)="onDelete(i)">Delete</button>
+    </clr-dg-action-overflow>
+  </clr-dg-row>
+
+  <!-- <-- Inside the full datagrid declaration -->
+  <clr-dg-footer>
+
+    <clr-dg-pagination #pagination [clrDgPageSize]="15" [clrDgTotalItems]="total">
+      <clr-dg-page-size [clrPageSizeOptions]="[15,25,50,100,250,500]">Cars per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      of {{total}} Cars
+    </clr-dg-pagination>
+
+    <clr-dg-column-toggle>
+      <clr-dg-column-toggle-title>Sembunyikan Kolom</clr-dg-column-toggle-title>
+      <clr-dg-column-toggle-button>Pilih semua</clr-dg-column-toggle-button>
+    </clr-dg-column-toggle>
+
+  </clr-dg-footer>
+</clr-datagrid>
+
+<div class="text-right">
+  <button type="submit" class="btn btn-primary" (click)="onNew()">Buat Model</button>
+</div>
+
+<br>
+
+<div class="modal" *ngIf="showForm">
+  <div class="modal-dialog modal-md fadeDown in" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <form clrForm #form="ngForm" (ngSubmit)="onSave()">
+        <!--Form header-->
+        <div class="modal-header">
+          <h3 class="modal-title">Model CAR Data</h3>
+        </div>
+        <!--Form body-->
+        <div class="modal-body">
+
+
+          <!--<clr-input-container>-->
+          <!--<label for="test" class="clr-col-xs-12 clr-col-md-4">Test id segment</label>-->
+          <!--<input id="test" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"-->
+          <!--[(ngModel)]="formModel.segmentId" name="test" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          required>-->
+          <!--</clr-input-container>-->
+          <clr-select-container>
+            <label for="product" class="clr-col-xs-12 clr-col-md-4">Produk</label>
+            <select id="product" class="clr-col-xs-12 clr-col-md-8" clrSelect name="product"
+                    [(ngModel)]="formModel.productName" required>
+              <!--<option value="0">Select Country</option>-->
+              <option *ngFor="let product of products" value={{product.name}}>
+                {{product.name}}
+              </option>
+            </select>
+            <clr-control-error>Mohon isi kolom ini!</clr-control-error>
+          </clr-select-container>
+          <clr-select-container>
+            <label for="segment" class="clr-col-xs-12 clr-col-md-4">Segmen</label>
+            <select id="segment" class="clr-col-xs-12 clr-col-md-8" clrSelect name="segment"
+                    [(ngModel)]="formModel.segmentId" required>
+              <option></option>
+              <option *ngFor="let segment of segmentContents" value={{segment.segmentId}}>
+                {{segment.segmentName}}
+              </option>
+            </select>
+            <clr-control-error>Mohon isi kolom ini!</clr-control-error>
+          </clr-select-container>
+          <clr-select-container>
+            <label for="maker" class="clr-col-xs-12 clr-col-md-4">Maker</label>
+            <select id="maker" class="clr-col-xs-12 clr-col-md-8" clrSelect name="makerId"
+                    [(ngModel)]="formModel.makerId" required>
+              <option></option>
+              <option *ngFor="let maker of makerContents" value={{maker.makerId}}>
+                {{maker.makerName}}
+              </option>
+            </select>
+            <clr-control-error>Mohon isi kolom ini!</clr-control-error>
+          </clr-select-container>
+          <clr-input-container>
+            <label for="model" class="clr-col-xs-12 clr-col-md-4">Model</label>
+            <input id="model" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.modelName" name="model" maxlength="50" required>
+            <clr-control-error>Mohon isi kolom ini!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label for="type" class="clr-col-xs-12 clr-col-md-4">Type</label>
+            <input id="type" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.modelType" name="type" maxlength="50" required>
+            <!--<clr-control-helper>Type in BPKB</clr-control-helper>-->
+            <clr-control-error>Mohon isi kolom ini!</clr-control-error>
+          </clr-input-container>
+          <clr-textarea-container>
+            <label for="description" class="clr-col-xs-12 clr-col-md-4">Deskripsi</label>
+            <textarea id="description" class="inputForm clr-col-xs-12 clr-col-md-8" clrTextarea
+                      [(ngModel)]="formModel.description" name="description"></textarea>
+          </clr-textarea-container>
+          <!--<clr-radio-container clrInline>-->
+          <!--<label class="clr-col-xs-12 clr-col-md-4">Status</label>-->
+          <!--<clr-radio-wrapper>-->
+          <!--<input id="status1" class="inputForm clr-col-xs-12 clr-col-md-8" type="radio" clrRadio [value]="true"-->
+          <!--[(ngModel)]="formModel.activeStatus" name="activeStatus"/>-->
+          <!--<label for="status1">Active</label>-->
+          <!--</clr-radio-wrapper>-->
+          <!--<clr-radio-wrapper>-->
+          <!--<input id="status2" type="radio" clrRadio [value]="false" [(ngModel)]="formModel.activeStatus" name="activeStatus"/>-->
+          <!--<label for="status2" class="clr-col-xs-12 clr-col-md-12">Non Active</label>-->
+          <!--</clr-radio-wrapper>-->
+          <!--</clr-radio-container>-->
+
+
+        </div>
+        <!--Form footer-->
+        <div class="modal-footer">
+          <button class="btn btn-outline" (click)="onCancel()">Cancel</button>
+          <button class="btn btn-primary" [disabled]="!form.valid" type="submit">{{submitType}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--for fading the background-->
+  <div class="modal-backdrop fade in" aria-hidden="true"></div>
+</div>

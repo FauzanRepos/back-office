@@ -1,9 +1,9 @@
 {
-  "name": "back-office",
+  "name": "back-office-test",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port=4300",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -18,9 +18,12 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@clr/angular": "12.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@clr/ui": "12.0.1",
+    "@cds/core": "^5.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.1",

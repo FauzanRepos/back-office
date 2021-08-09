@@ -1,3 +1,22 @@
+# HOW TO RUN PROJECT IN WINDOWS
+
+1. install node with this link
+    https://nodejs.org/en/download/
+
+2. make sure node installed correctly using this command
+    node -v => node version 14.x.x
+    npm -v => npm version 6.x.x
+
+3. install node depndency using this command
+    npm install -g @angular/cli
+    npm install
+
+4. run project with this command
+    npm run start
+
+5. open this link in your browser
+    http://localhost:4300/
+
 # BackOffice
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.

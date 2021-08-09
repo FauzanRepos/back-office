@@ -1,0 +1,89 @@
+<!--<div class="modal">-->
+<!--  <div class="modal-dialog modal-md fadeDown in" role="dialog" aria-hidden="true">-->
+<!--    <div class="modal-content">-->
+      <form clrForm #form="ngForm" (ngSubmit)="onSave()">
+        <!--Form header-->
+        <div class="modal-header p3">
+          <h3 class="modal-title">{{breadcrumb}}</h3>
+        </div>
+        <!--Form body-->
+        <div class="modal-body">
+          <clr-input-container>
+            <label for="username" class="clr-col-xs-12 clr-col-md-4">User Name</label>
+            <input id="username" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.username" name="username" maxlength="50" required [readOnly]="disabled">
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label for="firstName" class="clr-col-xs-12 clr-col-md-4">First Name</label>
+            <input id="firstName" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.firstName" name="firstName" maxlength="50" required [readOnly]="disabled">
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label for="lastName" class="clr-col-xs-12 clr-col-md-4">Last Name</label>
+            <input id="lastName" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.lastName" name="lastName" maxlength="50" required [readOnly]="disabled">
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label for="email" class="clr-col-xs-12 clr-col-md-4">Alamat Email</label>
+            <input id="email" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput name="email" type="text"
+                   [(ngModel)]="formModel.email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50" required [readOnly]="disabled">
+            <clr-control-error>Please use email format</clr-control-error>
+          </clr-input-container>
+          <clr-input-container [hidden]="!disabled">
+            <label for="dateR" class="clr-col-xs-12 clr-col-md-4">Birth Date</label>
+            <input id="dateR" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.birthDate" name="dateR" maxlength="20" required readOnly>
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-date-container [hidden]="disabled">
+            <label for="date" class="clr-col-xs-12 clr-col-md-4">Birth Date</label>
+            <input id="date" class="inputForm clr-col-xs-12 clr-col-md-8" type="date" clrDate name="date" [(ngModel)]="formModel.birthDate" readonly required/>
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-date-container>
+          <clr-input-container>
+            <label for="basicSalary" class="clr-col-xs-12 clr-col-md-4">Basic Salary</label>
+            <input id="basicSalary" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="number"
+                   [(ngModel)]="formModel.basicSalary" name="basicSalary" maxlength="20" required [readOnly]="disabled">
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container [hidden]="!disabled">
+            <label for="statusR" class="clr-col-xs-12 clr-col-md-4">Status</label>
+            <input id="statusR" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.status" name="statusR" maxlength="20" required readOnly>
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-select-container [hidden]="disabled">
+            <label for="status" class="clr-col-xs-12 clr-col-md-4">Status</label>
+            <select id="status" class="clr-col-xs-12 clr-col-md-8" clrSelect name="status"
+                    [(ngModel)]="formModel.status" required [hidden]="disabled">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-select-container>
+          <clr-input-container>
+            <label for="group" class="clr-col-xs-12 clr-col-md-4">Group</label>
+            <input id="group" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="text"
+                   [(ngModel)]="formModel.group" name="group" maxlength="50" required [readOnly]="disabled">
+            <clr-control-error>Please fill this form!</clr-control-error>
+          </clr-input-container>
+          <clr-textarea-container>
+            <label for="description" class="clr-col-xs-12 clr-col-md-4">Description</label>
+            <textarea id="description" class="inputForm clr-col-xs-12 clr-col-md-8" clrTextarea
+                      [(ngModel)]="formModel.description" name="description"></textarea>
+          </clr-textarea-container>
+        </div>
+        <!--Form footer-->
+        <div class="modal-footer">
+          <button class="btn btn-outline" (click)="onCancel()">Cancel</button>
+          <button class="btn btn-primary" [disabled]="!form.valid" type="submit" *ngIf="!disabled">{{submitType}}</button>
+        </div>
+      </form>
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash;for fading the background&ndash;&gt;-->
+<!--  <div class="modal-backdrop fade in" aria-hidden="true"></div>-->
+<!--</div>-->
