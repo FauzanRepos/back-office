@@ -12,18 +12,20 @@ import {FormComponent} from "./employee/form/form.component";
 import {PopupComponent} from "./shared/popup/popup.component";
 import {EmployeeComponent} from "./employee/employee.component";
 import {FormsModule} from "@angular/forms";
+import {RupiahPipe} from "./employee/_pipe/rupiah.pipe";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    NotFoundComponent,
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        NotFoundComponent,
 
-    ListComponent,
-    FormComponent,
-    PopupComponent,
-    EmployeeComponent
-  ],
+        ListComponent,
+        FormComponent,
+        PopupComponent,
+        EmployeeComponent,
+        RupiahPipe
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

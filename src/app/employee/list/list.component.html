@@ -52,14 +52,14 @@
 
   <clr-dg-placeholder>Sorry, no data available</clr-dg-placeholder>
 
-  <clr-dg-row *ngFor="let data of employeeMandilist; let i = index" [clrDgItem]="data">
+  <clr-dg-row *clrDgItems="let data of employeeMandilist; let i = index" [clrDgItem]="data">
     <clr-dg-cell>{{ pagination.firstItem + i + 1 }}</clr-dg-cell>
     <clr-dg-cell>{{ data.username }}</clr-dg-cell>
     <clr-dg-cell>{{ data.firstName }}</clr-dg-cell>
     <clr-dg-cell>{{ data.lastName }}</clr-dg-cell>
     <clr-dg-cell>{{ data.email }}</clr-dg-cell>
     <clr-dg-cell>{{ data.birthDate }}</clr-dg-cell>
-    <clr-dg-cell>{{ data.basicSalary }}</clr-dg-cell>
+    <clr-dg-cell style="min-width: 150px;">{{ data.basicSalary | rupiah }}</clr-dg-cell>
     <clr-dg-cell>{{ data.status }}</clr-dg-cell>
     <clr-dg-cell>{{ data.group }}</clr-dg-cell>
     <clr-dg-cell>{{ data.description }}</clr-dg-cell>

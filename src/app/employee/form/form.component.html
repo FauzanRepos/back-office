@@ -40,13 +40,14 @@
           </clr-input-container>
           <clr-date-container [hidden]="disabled">
             <label for="date" class="clr-col-xs-12 clr-col-md-4">Birth Date</label>
-            <input id="date" class="inputForm clr-col-xs-12 clr-col-md-8" type="date" clrDate name="date" [(ngModel)]="formModel.birthDate" readonly required/>
+            <input id="date" class="inputForm clr-col-xs-12 clr-col-md-8" type="date" clrDate name="date" [(ngModel)]="formModel.birthDate" readonly required [max]="maxDate"/>
             <clr-control-error>Please fill this form!</clr-control-error>
           </clr-date-container>
           <clr-input-container>
             <label for="basicSalary" class="clr-col-xs-12 clr-col-md-4">Basic Salary</label>
+            <div class="inputForm clr-col-xs-12 clr-col-md-8" clrInput readonly [hidden]="!disabled">{{formModel.basicSalary | rupiah}}</div>
             <input id="basicSalary" class="inputForm clr-col-xs-12 clr-col-md-8" clrInput type="number"
-                   [(ngModel)]="formModel.basicSalary" name="basicSalary" maxlength="20" required [readOnly]="disabled">
+                   [(ngModel)]="formModel.basicSalary" name="basicSalary" maxlength="20" required [hidden]="disabled">
             <clr-control-error>Please fill this form!</clr-control-error>
           </clr-input-container>
           <clr-input-container [hidden]="!disabled">
@@ -73,12 +74,12 @@
           <clr-textarea-container>
             <label for="description" class="clr-col-xs-12 clr-col-md-4">Description</label>
             <textarea id="description" class="inputForm clr-col-xs-12 clr-col-md-8" clrTextarea
-                      [(ngModel)]="formModel.description" name="description"></textarea>
+                      [(ngModel)]="formModel.description" name="description" required [readOnly]="disabled"></textarea>
           </clr-textarea-container>
         </div>
         <!--Form footer-->
         <div class="modal-footer">
-          <button class="btn btn-outline" (click)="onCancel()">Cancel</button>
+          <button class="btn btn-outline" (click)="onCancel()">{{!disabled ? 'Cancel' : 'OK'}}</button>
           <button class="btn btn-primary" [disabled]="!form.valid" type="submit" *ngIf="!disabled">{{submitType}}</button>
         </div>
       </form>
