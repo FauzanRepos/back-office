@@ -18,7 +18,7 @@
     http://localhost:4300/
 
 6. login using this credential
-    username: userID
+    username: usernameAdmin
     password: password123
 
 # BackOffice
